@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
+import { checkCredential } from "../repositories/credentialRepository";
 
-export async function signup(req: Request, res: Response) {
-    const { title, url, user, email } = req.body;
+export async function createNewCredential(req: Request, res: Response) {
+    const credential = req.body;
 
-    res.status(201).send('Usuário cadastrado!')
+    await checkCredential(credential);
+
+    res.status(201).send('Credencial cadastrada!')
 }

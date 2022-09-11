@@ -7,8 +7,8 @@ dotenv.config();
 
 export async function createUser(user: TypeAuth) {
     await isUniqueEmail(user.email);
-    const password = bcrypt.hashSync(user.password, 5);
-    await insertUser(user.email, password);
+    user.password = bcrypt.hashSync(user.password, 5);
+    await insertUser(user);
 }
 
 export async function isUniqueEmail(email: string) {
