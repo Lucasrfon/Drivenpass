@@ -17,7 +17,12 @@ export default function validateToken() {
             throw { type: "code", message: '.env não implementado' }
         }
 
-        jwt.verify(token, secret)
+        const user = jwt.verify(token, secret)
+
+        if(typeof(user) === 'object') {
+            res.locals.id = user.id;
+        }
+        
         next();
     }
 }
