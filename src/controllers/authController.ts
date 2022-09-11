@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { checkAndLogin, createUser } from "../services/authService";
+import { checkLogin, createUser } from "../services/authService";
 
 export async function signup(req: Request, res: Response) {
     const { email, password } = req.body;
@@ -12,7 +12,7 @@ export async function signup(req: Request, res: Response) {
 export async function login(req: Request, res: Response) {
     const { email, password } = req.body;
 
-    await checkAndLogin(email, password);
+    const token = await checkLogin(email, password);
 
-    res.status(200).send()
+    res.status(200).send(token)
 }
