@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { checkCredential, getAllCredentials, getOneCredential } from "../services/credentialService";
+import { checkCredential, getAllCredentials, getOneCredential, removeCredential } from "../services/credentialService";
 
 export async function createNewCredential(req: Request, res: Response) {
     const credential = req.body;
@@ -24,4 +24,13 @@ export async function getCredential(req: Request, res: Response) {
     const credential = await getOneCredential(userId, credentialId);
 
     res.status(200).send(credential)
+}
+
+export async function deleteCredential(req: Request, res: Response) {
+    const userId = res.locals.id;
+    const credentialId = parseInt(req.params.id);
+
+    await removeCredential(userId, credentialId);
+
+    res.status(200).send('Credential excluída')
 }

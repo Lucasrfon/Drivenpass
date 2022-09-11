@@ -19,3 +19,7 @@ export async function findCredential(id: number) {
     const credential = await client.credentials.findUnique({where: { id }});
     return credential
 }
+
+export async function deleteCredential(id: number) {
+    await client.credentials.delete({where: { id }});
+}
