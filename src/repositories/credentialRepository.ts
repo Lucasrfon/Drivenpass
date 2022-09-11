@@ -14,3 +14,8 @@ export async function findAllCredentials(id: number) {
     const credentials = await client.credentials.findMany({where: { userId: id }});
     return credentials
 }
+
+export async function findCredential(id: number) {
+    const credential = await client.credentials.findUnique({where: { id }});
+    return credential
+}

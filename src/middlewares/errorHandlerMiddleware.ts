@@ -6,6 +6,10 @@ export default async function errorHandlerMiddleware(error: { type: string, mess
 		return res.status(401).send(error.message);
 	}
 
+	if(error.type === "not found" || error.name) {
+		return res.status(404).send("Não encontrado");
+	}
+
 	if(error.type === "conflict") {
 		return res.status(409).send(error.message);
 	}
