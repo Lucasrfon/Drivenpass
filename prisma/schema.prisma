@@ -15,6 +15,7 @@ model users {
   notes notes[]
   cards cards[]
   wifis wifis[]
+  docs docs[]
 }
 
 model credentials {
@@ -47,7 +48,7 @@ model cards {
   expiration DateTime
   password String
   isVirtual Boolean
-  type String
+  typeCard String
   title String
   author   users @relation(fields: [userId], references: [id])
   userId Int
@@ -55,7 +56,7 @@ model cards {
   @@unique([title, userId])
 }
 
-enum type {
+enum typeCard {
   CREDITO
   DEBITO
   AMBOS
@@ -68,4 +69,21 @@ model wifis {
   title String
   author   users @relation(fields: [userId], references: [id])
   userId Int
+}
+
+model docs {
+  id Int @id @default(autoincrement())
+  typeDoc String
+  name String
+  emission DateTime
+  expiration DateTime
+  number String
+  org String
+  author   users @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+enum typeDoc {
+  RG
+  CNH
 }
