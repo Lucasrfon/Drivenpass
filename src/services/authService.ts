@@ -14,3 +14,7 @@ export async function isUniqueEmail(email: string) {
         throw { type: "conflict", message: 'Email já cadastrado' };
     }
 }
+
+export async function checkAndLogin(email: string, rawPassword: string) {
+    
+}
