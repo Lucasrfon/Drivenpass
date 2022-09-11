@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { createUser } from "../services/authService";
 
-export async function login(req: Request, res: Response) {
+export async function signup(req: Request, res: Response) {
     const { email, password } = req.body;
 
     await createUser(email, password);

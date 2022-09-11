@@ -6,5 +6,9 @@ export default async function errorHandlerMiddleware(error: { type: string, mess
 		return res.status(422).send(error.message);
 	}
 
+	if(error.type === "conflict") {
+		return res.status(409).send(error.message);
+	}
+
 	return res.sendStatus(500);
 }
