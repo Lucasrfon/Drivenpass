@@ -31,6 +31,10 @@ export async function checkLogin(email: string, rawPassword: string) {
         throw { type: "unauthorized", message: 'Email ou senha inválidos' }
     }
     
+    return generateToken(user.id);
+}
+
+export function generateToken(id: number) {
     const secret = process.env.TOKEN_SECRET_KEY;
 
     if(!secret) {
@@ -38,7 +42,7 @@ export async function checkLogin(email: string, rawPassword: string) {
     }
 
     const expiresIn = process.env.EXPIRES_IN;
-    const token = jwt.sign({id: user.id}, secret, {expiresIn});
+    const token = jwt.sign({ id }, secret, { expiresIn });
 
     return token
 }
