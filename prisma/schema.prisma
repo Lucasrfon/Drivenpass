@@ -22,4 +22,6 @@ model credentials {
   title String
   author   users @relation(fields: [userId], references: [id])
   userId Int
+
+  @@unique([title, userId])
 }
