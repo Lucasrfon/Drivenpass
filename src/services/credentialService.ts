@@ -1,6 +1,6 @@
 import Cryptr from 'cryptr';
 import dotenv from 'dotenv';
-import { findCredentialByUserIdAndTitle, insertCredential } from "../repositories/credentialRepository";
+import { findAllCredentials, findCredentialByUserIdAndTitle, insertCredential } from "../repositories/credentialRepository";
 import { TypeCredential } from "../utils/interfaces";
 dotenv.config();
 
@@ -15,4 +15,11 @@ export async function checkCredential(id: number, credential: TypeCredential) {
 
     credential.password = cryptr.encrypt(credential.password);
     await insertCredential(id, credential);
+}
+
+export async function getAllCredentials(id: number) {
+    const credentials = await findAllCredentials(id);
+    credentials.map(credential => credential.password = cryptr.decrypt(credential.password));
+
+    return credentials
 }
