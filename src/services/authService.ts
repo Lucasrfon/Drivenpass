@@ -2,12 +2,13 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { findUserByEmail, insertUser } from '../repositories/authRepository';
+import { TypeAuth } from '../utils/interfaces';
 dotenv.config();
 
-export async function createUser(email: string, rawPassword: string) {
-    await isUniqueEmail(email);
-    const password = bcrypt.hashSync(rawPassword, 5);
-    await insertUser(email, password);
+export async function createUser(user: TypeAuth) {
+    await isUniqueEmail(user.email);
+    const password = bcrypt.hashSync(user.password, 5);
+    await insertUser(user.email, password);
 }
 
 export async function isUniqueEmail(email: string) {
@@ -18,20 +19,20 @@ export async function isUniqueEmail(email: string) {
     }
 }
 
-export async function checkLogin(email: string, rawPassword: string) {
-    const user = await findUserByEmail(email);
+export async function checkLogin(user: TypeAuth) {
+    const findUser = await findUserByEmail(user.email);
     
-    if(!user) {
+    if(!findUser) {
         throw { type: "unauthorized", message: 'Email ou senha inválidos' }
     }
 
-    const password = bcrypt.compareSync(rawPassword, user.password);
+    const password = bcrypt.compareSync(user.password, findUser.password);
 
     if(!password) {
         throw { type: "unauthorized", message: 'Email ou senha inválidos' }
     }
     
-    return generateToken(user.id);
+    return generateToken(findUser.id);
 }
 
 export function generateToken(id: number) {
