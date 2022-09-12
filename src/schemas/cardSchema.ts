@@ -1,6 +1,6 @@
 import joi from "joi";
 import joiDate from '@joi/date';
-const extendedJoi = joi.extend(joiDate)
+const extendedJoi = joi.extend(joiDate);
 
 const cardSchema = joi.object({
     number: joi.string().creditCard().required(),
