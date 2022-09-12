@@ -1,4 +1,4 @@
-import { cards, credentials, notes, users, wifis } from "@prisma/client";
+import { cards, credentials, docs, notes, users, wifis } from "@prisma/client";
 
 export type TypeAuth = Omit<users, 'id'>
 
@@ -9,3 +9,5 @@ export type TypeNote = Omit<notes, 'id' | 'userId'>
 export type TypeCard = Omit<cards, 'id' | 'userId'>
 
 export type TypeWifi = Omit<wifis, 'id' | 'userId'>
+
+export type TypeDocument = Omit<docs, 'id' | 'userId'>
