@@ -17,7 +17,7 @@ export async function getDocuments(req: Request, res: Response) {
     res.status(200).send(documents)
 }
 
-export async function getdocument(req: Request, res: Response) {
+export async function getDocument(req: Request, res: Response) {
     const userId = res.locals.id;
     const documentId = parseInt(req.params.id);
 
