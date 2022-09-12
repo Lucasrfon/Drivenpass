@@ -8,7 +8,7 @@ const documentSchema = joi.object({
     emission: extendedJoi.date().format('DD/MM/YY').required(),
     expiration: extendedJoi.date().format('MM/YY').required(),
     number: joi.string().pattern(/^[0-9]*$/).required(),
-    org: joi.string().required()
+    org: joi.string().pattern(/^[A-Za-z\-\/]*$/).required()
 });
 
 export default documentSchema
