@@ -45,7 +45,7 @@ model cards {
   number String 
   name String
   cvv String
-  expiration DateTime
+  expiration String
   password String
   isVirtual Boolean
   typeCard String
