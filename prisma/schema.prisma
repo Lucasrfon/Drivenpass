@@ -75,8 +75,8 @@ model docs {
   id Int @id @default(autoincrement())
   typeDoc String
   name String
-  emission DateTime
-  expiration DateTime
+  emission String
+  expiration String
   number String
   org String
   author   users @relation(fields: [userId], references: [id])

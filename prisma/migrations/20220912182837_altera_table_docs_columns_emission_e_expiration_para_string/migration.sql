@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "docs" ALTER COLUMN "emission" SET DATA TYPE TEXT,
+ALTER COLUMN "expiration" SET DATA TYPE TEXT;
