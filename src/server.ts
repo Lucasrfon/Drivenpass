@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import 'express-async-errors';
 import router from './routers/index';
 import errorHandlerMiddleware from './middlewares/errorHandlerMiddleware';
+
 dotenv.config();
 
 const server = express();
